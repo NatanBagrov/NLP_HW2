@@ -1,0 +1,6 @@
+1	Pierre	_	NNP	_	_	2	NAME	_	_
+2	Vinken	_	NNP	_	_	8	VMOD	_	_
+
+1	Mr.	_	NNP	_	_	2	NAME	_	_
+2	Vinken	_	NNP	_	_	3	VMOD	_	_
+3	is	_	VBZ	_	_	0	ROOT	_	_
