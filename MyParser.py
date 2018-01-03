@@ -23,14 +23,16 @@ class MyParser:
                 tokens.append(token)
             self.histories.append(History(tokens))
 
-    def _getHeadTokens(self):
-        tokens = []
+    def getTupleOfHeadAndModifier(self):
+        tuple_tokens = []
         for history in self.histories:
-            for token in history:
-                p_token = history[token.head]
-                if p_token.idx != 0:
-                    tokens.append(p_token)
-        return tokens
+            for modifier_token in history[1:]:
+                head_token = history[modifier_token.head]
+                tuple_tokens.append((head_token,modifier_token))
+        return tuple_tokens
+
+    def _getHeadTokens(self):
+        return [tpl[0] for tpl in self.getTupleOfHeadAndModifier()]
 
     def getTupleOfPosAndWordFromHeadTokens(self):
         heads = self._getHeadTokens()
@@ -61,13 +63,7 @@ class MyParser:
         return res
 
     def getModifierTokens(self):
-        tokens = []
-        for history in self.histories:
-            for token in history:
-                if token.idx == 0:
-                    continue
-                tokens.append(token)
-        return tokens
+        return [tpl[1] for tpl in self.getTupleOfHeadAndModifier()]
 
     def getTupleOfPosAndWordFromModifierTokens(self):
         modifiers = self.getModifierTokens()
