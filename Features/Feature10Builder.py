@@ -1,7 +1,7 @@
 import numpy as np
 
 from Features.FeatureBuilderBase import FeatureBuilderBase
-from MyParser import MyParser
+from Utils.MyParser import MyParser
 
 
 class Feature10Builder(FeatureBuilderBase):

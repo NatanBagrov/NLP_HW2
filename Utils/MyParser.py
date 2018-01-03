@@ -1,7 +1,5 @@
-import os
-
-from History import History
-from Token import Token
+from Utils.History import History
+from Utils.Token import Token
 
 
 class MyParser:

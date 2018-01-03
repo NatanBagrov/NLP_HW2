@@ -1,4 +1,4 @@
-from MyParser import MyParser
+from Utils.MyParser import MyParser
 
 
 def basic():
