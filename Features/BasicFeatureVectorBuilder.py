@@ -23,13 +23,13 @@ class BasicFeatureVectorBuilder(FeatureBuilderBase):
         self.f3 = Feature3Builder(parser, size)
         size += self.f3.size
         self.f4 = Feature4Builder(parser, size)
-        size = self.f4.size
+        size += self.f4.size
         self.f5 = Feature5Builder(parser, size)
         size += self.f5.size
         self.f6 = Feature6Builder(parser, size)
         size += self.f6.size
         self.f8 = Feature8Builder(parser, size)
-        size = self.f8.size
+        size += self.f8.size
         self.f10 = Feature10Builder(parser, size)
         size += self.f10.size
         self.f13 = Feature13Builder(parser, size)

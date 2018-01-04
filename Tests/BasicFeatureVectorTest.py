@@ -17,6 +17,10 @@ def test():
     assert vectorBuilder.f8.size == 22
     assert vectorBuilder.f10.size == 21
     assert vectorBuilder.f13.size == 19
+    assert vectorBuilder.size == 139
+    assert vec.size == 9
+    print (vec)
+    pass
 
 
 if __name__ == '__main__':
