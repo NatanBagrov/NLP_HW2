@@ -13,7 +13,7 @@ class Feature6Builder(FeatureBuilderBase):
             self.pos[pos[index]] = index + self.offset
 
     def getFeatureVector(self, history, head, modifier):
-        modifier_token = history[modifier]
+        modifier_token = history.tokens[modifier]
         modifier_pos = modifier_token.pos
         if modifier_pos in self.pos:
             return np.array([self.pos[modifier_pos]])

@@ -10,7 +10,7 @@ class MyParser:
         self.lines = f.read()
         f.close()
         self.lines = self.lines.split('\n\n')
-        root = Token(0, 'Root', '_', -1)
+        root = Token(0, 'ROOTWORD', 'ROOTPOS', -1)
         self.histories = []
         for sentence in self.lines:
             tokens = [root]
@@ -24,8 +24,8 @@ class MyParser:
     def getTupleOfHeadAndModifier(self):
         tuple_tokens = []
         for history in self.histories:
-            for modifier_token in history[1:]:
-                head_token = history[modifier_token.head]
+            for modifier_token in history.tokens[1:]:
+                head_token = history.tokens[modifier_token.head]
                 tuple_tokens.append((head_token,modifier_token))
         return tuple_tokens
 

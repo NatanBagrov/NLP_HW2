@@ -13,7 +13,7 @@ class Feature1Builder(FeatureBuilderBase):
             self.head_tuples[head_tuples[index]] = index + self.offset
 
     def getFeatureVector(self, history, head, modifier):
-        head_token = history[head]
+        head_token = history.tokens[head]
         tpl = head_token.token, head_token.pos
         if tpl in self.head_tuples:
             return np.array([self.head_tuples[tpl]])

@@ -13,7 +13,7 @@ class Feature5Builder(FeatureBuilderBase):
             self.modifiers[modifiers[index]] = index + self.offset
 
     def getFeatureVector(self, history, head, modifier):
-        modifier_token = history[modifier]
+        modifier_token = history.tokens[modifier]
         modifier_word = modifier_token.token
         if modifier_word in self.modifiers:
             return np.array([self.modifiers[modifier_word]])

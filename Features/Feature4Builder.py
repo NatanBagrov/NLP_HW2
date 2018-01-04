@@ -13,7 +13,7 @@ class Feature4Builder(FeatureBuilderBase):
             self.modifier_tuples[modifier_tuples[index]] = index + self.offset
 
     def getFeatureVector(self, history, head, modifier):
-        modifier_token = history[modifier]
+        modifier_token = history.tokens[modifier]
         tpl = modifier_token.token, modifier_token.pos
         if tpl in self.modifier_tuples:
             return np.array([self.modifier_tuples[tpl]])

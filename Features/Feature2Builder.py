@@ -13,7 +13,7 @@ class Feature2Builder(FeatureBuilderBase):
             self.heads[heads[index]] = index + self.offset
 
     def getFeatureVector(self, history, head, modifier):
-        head_token = history[head]
+        head_token = history.tokens[head]
         head_word = head_token.token
         if head_word in self.heads:
             return np.array([self.heads[head_word]])
