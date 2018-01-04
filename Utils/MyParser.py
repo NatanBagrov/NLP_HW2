@@ -4,7 +4,7 @@ from Utils.Token import Token
 
 class MyParser:
 
-    def __init__(self, fileName):
+    def __init__(self, fileName, is_train):
         self.fileName = fileName
         f = open(self.fileName)
         self.lines = f.read()
@@ -17,7 +17,10 @@ class MyParser:
             words = sentence.split('\n')
             for inputWord in words:
                 word = inputWord.split('\t')
-                token = Token(int(word[0]), word[1], word[3], int(word[6]))
+                p = -1
+                if is_train:
+                    p = int(word[6])
+                token = Token(int(word[0]), word[1], word[3], p)
                 tokens.append(token)
             self.histories.append(History(tokens))
 
@@ -26,7 +29,7 @@ class MyParser:
         for history in self.histories:
             for modifier_token in history.tokens[1:]:
                 head_token = history.tokens[modifier_token.head]
-                tuple_tokens.append((head_token,modifier_token))
+                tuple_tokens.append((head_token, modifier_token))
         return tuple_tokens
 
     def _getHeadTokens(self):
@@ -89,4 +92,13 @@ class MyParser:
             res.add(tpl[1])
         res = list(res)
         res.sort()
+        return res
+
+    def getAllHistoriesWithParseTrees(self):
+        return [(h, self._getParseTreeFromHistory(h)) for h in self.histories]
+
+    def _getParseTreeFromHistory(self, history: History):
+        res = []
+        for token in history.tokens[1:]:
+            res.append((token.head, token.idx))
         return res

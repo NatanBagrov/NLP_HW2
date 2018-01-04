@@ -1,4 +1,5 @@
 from Features.BasicFeatureVectorBuilder import BasicFeatureVectorBuilder
+from Utils.Gen import Gen
 from Utils.MyParser import MyParser
 from Utils.Token import Token
 
@@ -19,9 +20,17 @@ def test():
     assert vectorBuilder.f13.size == 19
     assert vectorBuilder.size == 139
     assert vec.size == 9
-    print (vec)
     pass
 
 
+def test2():
+    parser = MyParser('test.txt')
+    history = parser.histories[0]
+    gen = Gen(2)
+    gen_gen = gen.gen(history)
+    res = next(gen_gen)
+    res2 = next(gen_gen)
+    pass
+
 if __name__ == '__main__':
-    test()
+    test2()
