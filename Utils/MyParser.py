@@ -4,7 +4,7 @@ from Utils.Token import Token
 
 class MyParser:
 
-    def __init__(self, fileName, is_train):
+    def __init__(self, fileName):
         self.fileName = fileName
         f = open(self.fileName)
         self.lines = f.read()
@@ -18,10 +18,11 @@ class MyParser:
             for inputWord in words:
                 word = inputWord.split('\t')
                 p = -1
-                if is_train:
+                if word[6]!='_':
                     p = int(word[6])
                 token = Token(int(word[0]), word[1], word[3], p)
                 tokens.append(token)
+
             self.histories.append(History(tokens))
 
     def getTupleOfHeadAndModifier(self):
