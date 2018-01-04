@@ -1,12 +1,7 @@
-from itertools import chain
-
-import numpy as np
 import time
-
-from Utils.Gen import Gen
+import numpy as np
 from Utils.History import History
 from Utils.Tagger import Tagger
-from Utils.chu_liu import Digraph
 
 
 class Perceptron():
@@ -24,7 +19,7 @@ class Perceptron():
                 opt_tree = self.tagger.historyToOptParseTree(self.featureVectorBuilder, history, w)
                 if not self._isTreeEq(opt_tree, tree):
                     w = self.update_weights(history, tree, opt_tree, w)
-            print("Finished Iteration #", n )
+            print("Finished Iteration #", n)
         return w
 
     def update_weights(self, history, tree, opt_tree, w):
