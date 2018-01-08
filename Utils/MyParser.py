@@ -18,7 +18,7 @@ class MyParser:
             for inputWord in words:
                 word = inputWord.split('\t')
                 p = -1
-                if word[6]!='_':
+                if word[6] != '_':
                     p = int(word[6])
                 token = Token(int(word[0]), word[1], word[3], p)
                 tokens.append(token)
@@ -103,3 +103,24 @@ class MyParser:
         for token in history.tokens[1:]:
             res.append((token.head, token.idx))
         return res
+
+    def getHeadAndModifierTokensAndDistance(self):
+        return [(h, m, h.idx - m.idx) for h, m in (self.getTupleOfHeadAndModifier())]
+
+    def getHeadAndModifierPosClassAndDistance(self):
+        return sorted(set([(self.getPosClass(h.pos), self.getPosClass(m.pos), d) for (h, m, d) in
+                self.getHeadAndModifierTokensAndDistance()]))
+
+    def getPosClass(self, pos: str):
+        if pos.startswith('NN'):
+            return 'NN'
+        elif pos.startswith('VB'):
+            return 'VB'
+        elif pos.startswith('JJ'):
+            return 'JJ'
+        elif pos.startswith('RB'):
+            return 'RB'
+        elif pos.startswith('PRP'):
+            return 'PRP'
+        else:
+            return pos
