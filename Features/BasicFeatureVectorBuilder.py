@@ -18,23 +18,31 @@ class BasicFeatureVectorBuilder(FeatureBuilderBase):
         self.parser = parser
         self.f1 = Feature1Builder(parser, 0)
         size = self.f1.size
+        print("F1 size:", self.f1.size)
         self.f2 = Feature2Builder(parser, size)
         size += self.f2.size
+        print("F2 size:", self.f2.size)
         self.f3 = Feature3Builder(parser, size)
         size += self.f3.size
+        print("F3 size:", self.f3.size)
         self.f4 = Feature4Builder(parser, size)
         size += self.f4.size
+        print("F4 size:", self.f4.size)
         self.f5 = Feature5Builder(parser, size)
         size += self.f5.size
+        print("F5 size:", self.f5.size)
         self.f6 = Feature6Builder(parser, size)
         size += self.f6.size
+        print("F6 size:", self.f6.size)
         self.f8 = Feature8Builder(parser, size)
         size += self.f8.size
+        print("F8 size:", self.f8.size)
         self.f10 = Feature10Builder(parser, size)
         size += self.f10.size
+        print("F10 size:", self.f10.size)
         self.f13 = Feature13Builder(parser, size)
         size += self.f13.size
-
+        print("F13 size:", self.f13.size)
         super().__init__(size, offset)
 
     def getFeatureVector(self, history, head, modifier):
