@@ -14,6 +14,13 @@ from Features.Feature10Builder import Feature10Builder
 from Features.Feature13Builder import Feature13Builder
 from Features.Feature9Builder import Feature9Builder
 from Features.FeatureBuilderBase import FeatureBuilderBase
+from Features.FeatureHeadAndModifierPosClassBuilder import FeatureHeadAndModifierPosClassBuilder
+from Features.FeatureHeadAndModifierPosClassDistanceBuilder import FeatureHeadAndModifierPosClassDistanceBuilder
+from Features.FeatureHeadAndModifierPosDistanceBuilder import FeatureHeadAndModifierPosDistanceBuilder
+from Features.FeatureHeadPosDistanceBuilder import FeatureHeadPosDistanceBuilder
+from Features.FeatureModifierPosDistanceBuilder import FeatureModifierPosDistanceBuilder
+from Features.FeaturePosBackwardBuilder import FeaturePosBackwardBuilder
+from Features.FeaturePosForwardBuilder import FeaturePosForwardBuilder
 from Utils.MyParser import MyParser
 
 
@@ -59,6 +66,27 @@ class ComplexFeatureVectorBuilder(FeatureBuilderBase):
         self.f13 = Feature13Builder(parser, size)
         size += self.f13.size
         print(self.f13.size)
+        self.fHMPosClass = FeatureHeadAndModifierPosClassBuilder(parser, size)
+        size += self.fHMPosClass
+        print(self.fHMPosClass.size)
+        self.fHMPosClassDistance = FeatureHeadAndModifierPosClassDistanceBuilder(parser, size)
+        size += self.fHMPosClassDistance
+        print(self.fHMPosClassDistance.size)
+        self.fHMPosDistnace = FeatureHeadAndModifierPosDistanceBuilder(parser, size)
+        size += self.fHMPosDistnace
+        print(self.fHMPosDistnace.size)
+        self.fHPosDistance = FeatureHeadPosDistanceBuilder(parser, size)
+        size += self.fHPosDistance
+        print(self.fHPosDistance.size)
+        self.fMPosDistance = FeatureModifierPosDistanceBuilder(parser, size)
+        size += self.fMPosDistance
+        print(self.fMPosDistance.size)
+        self.fPosBack = FeaturePosBackwardBuilder(parser, size)
+        size += self.fPosBack
+        print(self.fPosBack.size)
+        self.fPosForward = FeaturePosForwardBuilder(parser, size)
+        size += self.fPosForward
+        print(self.fPosForward.size)
         super().__init__(size, offset)
 
     def getFeatureVector(self, history, head, modifier):
@@ -75,5 +103,13 @@ class ComplexFeatureVectorBuilder(FeatureBuilderBase):
         vec11 = self.f11.getFeatureVector(history, head, modifier)
         vec12 = self.f12.getFeatureVector(history, head, modifier)
         vec13 = self.f13.getFeatureVector(history, head, modifier)
+        vec14 = self.fHMPosClass.getFeatureVector(history, head, modifier)
+        vec15 = self.fHMPosClassDistance.getFeatureVector(history, head, modifier)
+        vec16 = self.fHMPosDistnace.getFeatureVector(history, head, modifier)
+        vec17 = self.fHPosDistance.getFeatureVector(history, head, modifier)
+        vec18 = self.fMPosDistance.getFeatureVector(history, head, modifier)
+        vec19 = self.fPosBack.getFeatureVector(history, head, modifier)
+        vec20 = self.fPosForward.getFeatureVector(history, head, modifier)
         return np.concatenate(
-            (vec1, vec2, vec3, vec4, vec5, vec6, vec7, vec8, vec9, vec10, vec11, vec12, vec13)).astype(int)
+            (vec1, vec2, vec3, vec4, vec5, vec6, vec7, vec8, vec9, vec10, vec11, vec12, vec13,
+             vec14, vec15, vec16, vec17, vec18, vec19, vec20)).astype(int)
