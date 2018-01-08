@@ -13,7 +13,8 @@ def infer_basic(fileToInfer, outputFile):
 
 
 def infer_complex(fileToInfer):
-    infer_prepare_params("complex", fileToInfer)
+    pass
+    # infer_prepare_params("complex", fileToInfer)
 
 
 def infer_prepare_params(basic_or_complex, fileToInfer, outputFile):
@@ -22,7 +23,7 @@ def infer_prepare_params(basic_or_complex, fileToInfer, outputFile):
     weight_file = None
     if basic_or_complex:
         featureBuilder = BasicFeatureVectorBuilder(train_parser, 0)
-        weight_file = "finish_basic_w.txt"
+        weight_file = "Weights/perceptron_iteration_100_weights.txt"
     else:
         pass
     parser = MyParser(fileToInfer)
@@ -39,7 +40,7 @@ def infer_prepare_params(basic_or_complex, fileToInfer, outputFile):
         output.write(tmpHistory.toString())
         tot_size += len(tree)
         tot_acc += tagger.compareTrees(tree, opt_tree)
-        print("Sentence ", idx, " Total acc: ", tot_acc / tot_size)
+        print("Sentence ", idx, " Total acc: ", 100 * (tot_acc / tot_size))
     output.close()
 
 if __name__ == "__main__":
