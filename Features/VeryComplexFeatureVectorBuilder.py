@@ -40,6 +40,6 @@ class VeryComplexFeatureVectorBuilder(FeatureBuilderBase):
 
     def getFeatureVector(self, history, head, modifier):
         vecComplex = self.fComplex.getFeatureVector(history, head, modifier)
-        myVec = np.concatenate(self.fInbetween.getFeatureVector(history, head, modifier),
-                               self.fNeighbors.getFeatureVector(history, head, modifier))
+        myVec = np.concatenate((self.fInbetween.getFeatureVector(history, head, modifier),
+                               self.fNeighbors.getFeatureVector(history, head, modifier)))
         return np.concatenate((vecComplex, myVec)).astype(int)

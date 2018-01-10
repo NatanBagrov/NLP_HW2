@@ -3,6 +3,7 @@ import time
 
 from Features.BasicFeatureVectorBuilder import BasicFeatureVectorBuilder
 from Features.ComplexFeatureVectorBuilder import ComplexFeatureVectorBuilder
+from Features.VeryComplexFeatureVectorBuilder import VeryComplexFeatureVectorBuilder
 from Utils.MyParser import MyParser
 from Utils.Perceptron import Perceptron
 from Utils.Tagger import Tagger
@@ -11,7 +12,7 @@ from Utils.Tagger import Tagger
 def fit_complex_model(continueFile, numIterations):
     resFile = "finish_complex_w" + str(numIterations) + ".txt"
     parser = MyParser("../train.labeled")
-    featureBuilder = ComplexFeatureVectorBuilder(parser, 0)
+    featureBuilder = VeryComplexFeatureVectorBuilder(parser, 0)
     tagger = Tagger()
     perceptron = Perceptron(featureBuilder, tagger)
     v = None
@@ -52,5 +53,5 @@ def fit_model_aux(resFile, parser: MyParser, perceptron: Perceptron, iterationsN
 
 
 if __name__ == "__main__":
-    fit_basic_model(None, 50)
-    # fit_complex_model(None, 100)
+    #fit_basic_model(None, 50)
+    fit_complex_model(None, 1)
