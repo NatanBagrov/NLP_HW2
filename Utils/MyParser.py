@@ -109,7 +109,7 @@ class MyParser:
 
     def getHeadAndModifierPosClassAndDistance(self):
         return sorted(set([(self.getPosClass(h.pos), self.getPosClass(m.pos), d) for (h, m, d) in
-                self.getHeadAndModifierTokensAndDistance()]))
+                           self.getHeadAndModifierTokensAndDistance()]))
 
     def getPosClass(self, pos: str):
         if pos.startswith('NN'):
@@ -124,3 +124,13 @@ class MyParser:
             return 'PRP'
         else:
             return pos
+
+    def getTupleOfHeadAndModifierAndTokensInBetween(self):
+        tuple_tokens = []
+        for history in self.histories:
+            for modifier_token in history.tokens[1:]:
+                head_token = history.tokens[modifier_token.head]
+                start, end = min(head_token.idx, modifier_token.idx) + 1, max(head_token.idx, modifier_token.idx)
+                inbetween = [token for token in history.tokens[start:end]]
+                tuple_tokens.append((head_token, modifier_token, inbetween))
+        return tuple_tokens
