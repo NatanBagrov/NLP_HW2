@@ -15,7 +15,7 @@ class Feature7Builder(FeatureBuilderBase):
 
     def getFeatureVector(self, history, head, modifier):
         head_token = history.tokens[head]
-        modifier_token = history[modifier]
+        modifier_token = history.tokens[modifier]
         tpl = head_token.token, head_token.pos, modifier_token.token, modifier_token.pos
         if tpl in self.h_m_tuples:
             return np.array([self.h_m_tuples[tpl]])

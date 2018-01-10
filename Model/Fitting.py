@@ -52,5 +52,5 @@ def fit_model_aux(resFile, parser: MyParser, perceptron: Perceptron, iterationsN
 
 
 if __name__ == "__main__":
-    fit_basic_model("Weights/perceptron_iteration_50_weights.txt", 50)
-    fit_complex_model(None, 100)
+    fit_basic_model(None, 50)
+    # fit_complex_model(None, 100)

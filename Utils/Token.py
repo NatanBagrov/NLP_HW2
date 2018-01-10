@@ -10,3 +10,12 @@ class Token():
 
     def toString(self):
         return str(self.idx) + '\t' + self.token + '\t_\t' + self.pos + '\t_\t_\t'+str(self.head) + '\t_\t_\t_\n'
+
+    def __lt__(self, other):
+        if self.idx < other.idx:
+            return True
+        if self.token.__lt__(other.token):
+            return True
+        return False
+
+
