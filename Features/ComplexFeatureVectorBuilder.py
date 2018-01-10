@@ -67,25 +67,25 @@ class ComplexFeatureVectorBuilder(FeatureBuilderBase):
         size += self.f13.size
         print(self.f13.size)
         self.fHMPosClass = FeatureHeadAndModifierPosClassBuilder(parser, size)
-        size += self.fHMPosClass
+        size += self.fHMPosClass.size
         print(self.fHMPosClass.size)
         self.fHMPosClassDistance = FeatureHeadAndModifierPosClassDistanceBuilder(parser, size)
-        size += self.fHMPosClassDistance
+        size += self.fHMPosClassDistance.size
         print(self.fHMPosClassDistance.size)
         self.fHMPosDistnace = FeatureHeadAndModifierPosDistanceBuilder(parser, size)
-        size += self.fHMPosDistnace
+        size += self.fHMPosDistnace.size
         print(self.fHMPosDistnace.size)
         self.fHPosDistance = FeatureHeadPosDistanceBuilder(parser, size)
-        size += self.fHPosDistance
+        size += self.fHPosDistance.size
         print(self.fHPosDistance.size)
         self.fMPosDistance = FeatureModifierPosDistanceBuilder(parser, size)
-        size += self.fMPosDistance
+        size += self.fMPosDistance.size
         print(self.fMPosDistance.size)
         self.fPosBack = FeaturePosBackwardBuilder(parser, size)
-        size += self.fPosBack
+        size += self.fPosBack.size
         print(self.fPosBack.size)
         self.fPosForward = FeaturePosForwardBuilder(parser, size)
-        size += self.fPosForward
+        size += self.fPosForward.size
         print(self.fPosForward.size)
         super().__init__(size, offset)
 

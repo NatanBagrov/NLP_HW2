@@ -46,4 +46,6 @@ def infer_prepare_params(basic_or_complex, fileToInfer, outputFile, weightsFile)
 
 
 if __name__ == "__main__":
-    infer_basic("../test.labeled", "infered_test.labeled")
+    # infer_complex("../test.labeled", "infered_test.labeled", "Weights/complex/perceptron_complex_100_weights.txt")
+    infer_basic("../test.labeled", "infered_test.labeled", "finish_basic_w50.txt")
+
