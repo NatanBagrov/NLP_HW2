@@ -12,6 +12,17 @@ from Utils.Tagger import Tagger
 def fit_complex_model(continueFile, numIterations):
     resFile = "finish_complex_w" + str(numIterations) + ".txt"
     parser = MyParser("../train.labeled")
+    featureBuilder = ComplexFeatureVectorBuilder(parser, 0)
+    tagger = Tagger()
+    perceptron = Perceptron(featureBuilder, tagger)
+    v = None
+    if continueFile is not None:
+        v = np.loadtxt(continueFile)
+    v = fit_model_aux(resFile, parser, perceptron, numIterations, v)
+
+def fit_very_complex_model(continueFile, numIterations):
+    resFile = "finish_very_complex_w" + str(numIterations) + ".txt"
+    parser = MyParser("../train.labeled")
     featureBuilder = VeryComplexFeatureVectorBuilder(parser, 0)
     tagger = Tagger()
     perceptron = Perceptron(featureBuilder, tagger)
@@ -19,9 +30,6 @@ def fit_complex_model(continueFile, numIterations):
     if continueFile is not None:
         v = np.loadtxt(continueFile)
     v = fit_model_aux(resFile, parser, perceptron, numIterations, v)
-    # for history in parser.histories:
-    #     print(tagger.historyToOptParseTree(featureBuilder,history,v))
-    #     pass
 
 
 def fit_basic_model(continueFile, numIterations):
@@ -54,4 +62,5 @@ def fit_model_aux(resFile, parser: MyParser, perceptron: Perceptron, iterationsN
 
 if __name__ == "__main__":
     #fit_basic_model(None, 50)
-    fit_complex_model(None, 1)
+    # fit_complex_model(None, 1)
+    fit_very_complex_model(None, 100)
