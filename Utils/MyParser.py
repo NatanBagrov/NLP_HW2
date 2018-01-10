@@ -113,17 +113,17 @@ class MyParser:
 
     def getPosClass(self, pos: str):
         if pos.startswith('NN'):
-            return 'NN'
+            return '_NN'
         elif pos.startswith('VB'):
-            return 'VB'
+            return '_VB'
         elif pos.startswith('JJ'):
-            return 'JJ'
+            return '_JJ'
         elif pos.startswith('RB'):
-            return 'RB'
+            return '_RB'
         elif pos.startswith('PRP'):
-            return 'PRP'
+            return '_PRP'
         else:
-            return pos
+            return '_' + pos
 
     def getTupleOfHeadAndModifierAndTokensInBetween(self):
         tuple_tokens = []
@@ -133,4 +133,22 @@ class MyParser:
                 start, end = min(head_token.idx, modifier_token.idx) + 1, max(head_token.idx, modifier_token.idx)
                 inbetween = [token for token in history.tokens[start:end]]
                 tuple_tokens.append((head_token, modifier_token, inbetween))
+        return tuple_tokens
+
+    def getTupleOfHeadAndModifierAndNeighbors(self):
+        tuple_tokens = []
+        for history in self.histories:
+            for modifier_token in history.tokens[1:]:
+                head_token = history.tokens[modifier_token.head]
+                head_nm1 = Token(-1, "____Before Root", "_", -1)
+                head_n1 = modifier_n1 = Token(-1, "____STOP", "_", -1)
+                if head_token.idx > 0:
+                    head_nm1 = history.tokens[head_token.idx - 1]
+                modifier_nm1 = history.tokens[modifier_token.idx - 1]
+                size = len(history.tokens)
+                if head_token.idx != size - 1:
+                    head_n1 = history.tokens[head_token.idx + 1]
+                if modifier_token.idx != size - 1:
+                    modifier_n1 = history.tokens[modifier_token.idx + 1]
+                tuple_tokens.append((head_nm1, head_token, head_n1, modifier_nm1, modifier_token, modifier_n1))
         return tuple_tokens
