@@ -33,10 +33,13 @@ class VeryComplexFeatureVectorBuilder(FeatureBuilderBase):
         self.fComplex = ComplexFeatureVectorBuilder(parser, 0)
         size = self.fComplex.size
         self.fInbetween = FeaturePosInBetweenBuilder(parser, size)
+        print("fInbetween size:", self.fInbetween.size)
         size += self.fInbetween.size
         self.fNeighbors = FeaturePosNeighborsBuilder(parser, size)
         size += self.fNeighbors.size
+        print("fNeighbors size:", self.fNeighbors.size)
         super().__init__(size, offset)
+        print("VeryComplex Total size:", self.size)
 
     def getFeatureVector(self, history, head, modifier):
         vecComplex = self.fComplex.getFeatureVector(history, head, modifier)

@@ -4,6 +4,7 @@ import os
 
 from Features.BasicFeatureVectorBuilder import BasicFeatureVectorBuilder
 from Features.ComplexFeatureVectorBuilder import ComplexFeatureVectorBuilder
+from Features.VeryComplexFeatureVectorBuilder import VeryComplexFeatureVectorBuilder
 from Utils.History import History
 from Utils.MyParser import MyParser
 from Utils.Tagger import Tagger
@@ -16,6 +17,9 @@ def infer_basic(fileToInfer, outputFile, weightsFile):
 def infer_complex(fileToInfer, outputFile, weightsFile):
     infer_prepare_params("complex", fileToInfer, outputFile, weightsFile)
 
+def infer_very_complex(fileToInfer, outputFile, weightsFile):
+    infer_prepare_params("very_complex", fileToInfer, outputFile, weightsFile)
+
 
 def infer_prepare_params(basic_or_complex, fileToInfer, outputFile, weightsFile):
     train_parser = MyParser("../train.labeled")
@@ -25,6 +29,8 @@ def infer_prepare_params(basic_or_complex, fileToInfer, outputFile, weightsFile)
         featureBuilder = BasicFeatureVectorBuilder(train_parser, 0)
     elif basic_or_complex == 'complex':
         featureBuilder = ComplexFeatureVectorBuilder(train_parser, 0)
+    elif basic_or_complex == 'very_complex':
+        featureBuilder = VeryComplexFeatureVectorBuilder(train_parser, 0)
     else:
         assert (False)
     parser = MyParser(fileToInfer)
@@ -47,5 +53,6 @@ def infer_prepare_params(basic_or_complex, fileToInfer, outputFile, weightsFile)
 
 if __name__ == "__main__":
     # infer_complex("../test.labeled", "infered_test.labeled", "Weights/complex/perceptron_complex_100_weights.txt")
-    infer_basic("../test.labeled", "infered_test.labeled", "finish_basic_w50.txt")
+    # infer_basic("../test.labeled", "infered_test.labeled", "finish_basic_w50.txt")
+    infer_very_complex("../test.labeled", "infered_test.labeled", "perceptron_verycomplex_iteration_78_weights.txt")
 
