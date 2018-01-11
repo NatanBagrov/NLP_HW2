@@ -29,73 +29,61 @@ class ComplexFeatureVectorBuilder(FeatureBuilderBase):
         self.parser = parser
         self.f1 = Feature1Builder(parser, 0)
         size = self.f1.size
-        print(self.f1.size)
+        print("f1 interval = ", size - self.f1.size, size)
         self.f2 = Feature2Builder(parser, size)
         size += self.f2.size
-        print(self.f2.size)
+        print("f2 interval = ", size - self.f2.size, size)
         self.f3 = Feature3Builder(parser, size)
         size += self.f3.size
-        print(self.f3.size)
-        self.f4 = Feature4Builder(parser, size)
-        size += self.f4.size
-        print(self.f4.size)
-        self.f5 = Feature5Builder(parser, size)
-        size += self.f5.size
-        print(self.f5.size)
-        self.f6 = Feature6Builder(parser, size)
-        size += self.f6.size
-        print(self.f6.size)
+        print("f3 interval = ", size - self.f3.size, size)
         self.f7 = Feature7Builder(parser, size)
         size += self.f7.size
-        print(self.f7.size)
+        print("f7 interval = ", size - self.f7.size, size)
         self.f8 = Feature8Builder(parser, size)
         size += self.f8.size
-        print(self.f8.size)
+        print("f8 interval = ", size - self.f8.size, size)
         self.f9 = Feature9Builder(parser, size)
         size += self.f9.size
-        print(self.f9.size)
+        print("f9 interval = ", size - self.f9.size, size)
         self.f10 = Feature10Builder(parser, size)
         size += self.f10.size
-        print(self.f10.size)
+        print("f10 interval = ", size - self.f10.size, size)
         self.f11 = Feature11Builder(parser, size)
         size += self.f11.size
-        print(self.f11.size)
+        print("f11 interval = ", size - self.f11.size, size)
         self.f12 = Feature12Builder(parser, size)
         size += self.f12.size
-        print(self.f12.size)
+        print("f12 interval = ", size - self.f12.size, size)
         self.f13 = Feature13Builder(parser, size)
         size += self.f13.size
-        print(self.f13.size)
+        print("f13 interval = ", size - self.f13.size, size)
         self.fHMPosClass = FeatureHeadAndModifierPosClassBuilder(parser, size)
         size += self.fHMPosClass.size
-        print(self.fHMPosClass.size)
+        print("fHMPosClass interval = ", size - self.fHMPosClass.size, size)
         self.fHMPosClassDistance = FeatureHeadAndModifierPosClassDistanceBuilder(parser, size)
         size += self.fHMPosClassDistance.size
-        print(self.fHMPosClassDistance.size)
+        print("fHMPosClassDistance interval = ", size - self.fHMPosClassDistance.size, size)
         self.fHMPosDistnace = FeatureHeadAndModifierPosDistanceBuilder(parser, size)
         size += self.fHMPosDistnace.size
-        print(self.fHMPosDistnace.size)
+        print("fHMPosDistnace interval = ", size - self.fHMPosDistnace.size, size)
         self.fHPosDistance = FeatureHeadPosDistanceBuilder(parser, size)
         size += self.fHPosDistance.size
-        print(self.fHPosDistance.size)
+        print("fHPosDistance interval = ", size - self.fHPosDistance.size, size)
         self.fMPosDistance = FeatureModifierPosDistanceBuilder(parser, size)
         size += self.fMPosDistance.size
-        print(self.fMPosDistance.size)
+        print("fMPosDistance interval = ", size - self.fMPosDistance.size, size)
         self.fPosBack = FeaturePosBackwardBuilder(parser, size)
         size += self.fPosBack.size
-        print(self.fPosBack.size)
+        print("fPosBack interval = ", size - self.fPosBack.size, size)
         self.fPosForward = FeaturePosForwardBuilder(parser, size)
         size += self.fPosForward.size
-        print(self.fPosForward.size)
+        print("fPosForward interval = ", size - self.fPosForward.size, size)
         super().__init__(size, offset)
 
     def getFeatureVector(self, history, head, modifier):
         vec1 = self.f1.getFeatureVector(history, head, modifier)
         vec2 = self.f2.getFeatureVector(history, head, modifier)
         vec3 = self.f3.getFeatureVector(history, head, modifier)
-        vec4 = self.f4.getFeatureVector(history, head, modifier)
-        vec5 = self.f5.getFeatureVector(history, head, modifier)
-        vec6 = self.f6.getFeatureVector(history, head, modifier)
         vec7 = self.f7.getFeatureVector(history, head, modifier)
         vec8 = self.f8.getFeatureVector(history, head, modifier)
         vec9 = self.f9.getFeatureVector(history, head, modifier)
@@ -111,5 +99,5 @@ class ComplexFeatureVectorBuilder(FeatureBuilderBase):
         vec19 = self.fPosBack.getFeatureVector(history, head, modifier)
         vec20 = self.fPosForward.getFeatureVector(history, head, modifier)
         return np.concatenate(
-            (vec1, vec2, vec3, vec4, vec5, vec6, vec7, vec8, vec9, vec10, vec11, vec12, vec13,
+            (vec1, vec2, vec3, vec7, vec8, vec9, vec10, vec11, vec12, vec13,
              vec14, vec15, vec16, vec17, vec18, vec19, vec20)).astype(int)

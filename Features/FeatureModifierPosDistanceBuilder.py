@@ -7,7 +7,7 @@ from Utils.MyParser import MyParser
 class FeatureModifierPosDistanceBuilder(FeatureBuilderBase):
     def __init__(self, parser: MyParser, offset) -> None:
         tokens = parser.getHeadAndModifierTokensAndDistance()
-        modifiers = sorted(set([(m,d) for (h,m,d) in tokens]))
+        modifiers = sorted(set([(m.pos, d) for (h, m, d) in tokens]))
         super().__init__(len(modifiers), offset)
         self.modifiersPosAndDistance = {}
         for index in range(0, self.size):

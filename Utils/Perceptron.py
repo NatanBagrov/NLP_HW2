@@ -30,9 +30,11 @@ class Perceptron():
 
     def update_weights(self, history, tree, opt_tree, w):
         for (i, j) in tree:
-            w[self.featureVectorBuilder.getFeatureVector(history, i, j)] += 1
+            vector = self.featureVectorBuilder.getFeatureVector(history, i, j)
+            w[vector] += 1
         for (i, j) in opt_tree:
-            w[self.featureVectorBuilder.getFeatureVector(history, i, j)] -= 1
+            vector = self.featureVectorBuilder.getFeatureVector(history, i, j)
+            w[vector] -= 1
         return w
 
     def _isTreeEq(self, t1, t2):
