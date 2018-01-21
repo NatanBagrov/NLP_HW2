@@ -35,7 +35,7 @@ class FeaturePosNeighborsBuilder(FeatureBuilderBase):
             hm_pos = self.parser.getPosClass(history.tokens[head + 1].pos)
         if modifier < size:
             mp_pos = self.parser.getPosClass(history.tokens[modifier + 1].pos)
-        mm_pos = self.parser.getPosClass(history.tokens[modifier - 1])
+        mm_pos = self.parser.getPosClass(history.tokens[modifier - 1].pos)
 
         m_pos = self.parser.getPosClass(history.tokens[modifier].pos)
         h_pos = self.parser.getPosClass(history.tokens[head].pos)
