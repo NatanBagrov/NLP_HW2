@@ -20,7 +20,7 @@ class FeaturePosInBetweenBuilder(FeatureBuilderBase):
         tpls1 = sorted(set(res))
         tpls2 = sorted(set(res2))
         tpls3 = sorted(set(res3))
-        tpls = tpls1 + tpls2 + tpls3
+        tpls = sorted(set(tpls1 + tpls2 + tpls3))
         super().__init__(len(tpls), offset)
         self.d = {}
         for index in range(0, self.size):
