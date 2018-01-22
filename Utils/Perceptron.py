@@ -29,10 +29,15 @@ class Perceptron():
         return w
 
     def update_weights(self, history, tree, opt_tree, w):
-        for (i, j) in tree:
+        tree = set(tree)
+        opt_tree = set(opt_tree)
+        intersection = tree.intersection(opt_tree)
+        to_add = (tree - intersection)
+        to_remove = (opt_tree - intersection)
+        for (i, j) in to_add:
             vector = self.featureVectorBuilder.getFeatureVector(history, i, j)
             w[vector] += 1
-        for (i, j) in opt_tree:
+        for (i, j) in to_remove:
             vector = self.featureVectorBuilder.getFeatureVector(history, i, j)
             w[vector] -= 1
         return w

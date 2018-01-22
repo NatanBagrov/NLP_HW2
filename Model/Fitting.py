@@ -61,6 +61,6 @@ def fit_model_aux(resFile, parser: MyParser, perceptron: Perceptron, iterationsN
 
 
 if __name__ == "__main__":
-    #fit_basic_model(None, 50)
+    # fit_basic_model(None, 100)
     # fit_complex_model(None, 1)
-    fit_very_complex_model(None, 1)
+    fit_very_complex_model(None, 100)
